@@ -1,0 +1,3 @@
+echo -n "A really secret messagesssssssss" | openssl enc -RC4 -K "AFFAFAFAFAFE1245AFFAFAFAFAFE1245" -iv "1010011111111111" -e -base64
+
+F+23BovJv92EJD8t6ELip3JQ71orNSaFheoZEr77hZk=

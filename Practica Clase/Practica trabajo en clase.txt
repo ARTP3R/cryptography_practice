@@ -1,0 +1,29 @@
+Crearemos los siguientes endpoints:
+
+1) Creación de usuarios -> Almacenaremos usuarios y generamos el jwt
+2) Renovación de la autorización (POST /jwt) -> Generaremos jwt con nuevo timestamp, si no viene en cabecera el jwt se genera el primero.
+3) Consumo de recursos:
+
+    Siempre validamos el jwt inicialmente. 
+
+    Obtener movimientos por tarjeta (POST /listamovimientos):
+        - Validaremos la integridad
+        - Descifraremos la tarjeta.
+        - Responderemos la lista de movimientos con comercio e importe, esta información la ciframos.
+
+    Cambio de clave simétrica (POST /updateKey):
+        - Vendrá el contenido cifrado con nuestra clave pública y firmado con su clave privada.
+        - Validar firma
+        - Descifrar contenido.
+        - Recifrar la clave con la clave maestra que crearemos en el keystore. 
+
+    Crear tarjeta (POST /newCard):
+        - Se creará una nueva tarjeta para el usuario. Generamos un random de X digitos para formar tarjetas.
+    
+    Insertar movimientos (POST /NewMovimiento):
+        - Para el idUsuario que tengamos contenido dentro del jwt añadimos el movimiento que va en el body. Dicho movimiento irá cifrado y deberemos descifrarlo y recifrarlo. 
+
+===============================
+Tendremos los datos cifrados en una base de datos, y dichos datos tendrán una clave de cifrado propia.
+
+Se trabajará el modelamiento de la base de datos para poder trabajar con datos cifrados.

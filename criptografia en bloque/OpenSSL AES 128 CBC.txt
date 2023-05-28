@@ -1,0 +1,2 @@
+OpenSSL AES-128-CBC. PKCS5/PKCS7
+  echo -n "A really secret messagesssssssss" | openssl enc -aes-128-cbc -K "2b7e151628aed2a6abf715891defefef" -iv "10100111111111111010011111111111" -e -base64  

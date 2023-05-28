@@ -1,0 +1,51 @@
+#Generamos claves privadas ec
+
+> openssl ecparam -name secp256k1 -genkey -out priv.pem
+
+Vemos los ddetalles de la clave:
+
+> openssl ec -in priv.pem -text -noout
+
+read EC key
+Private-Key: (256 bit)
+priv:
+    20:da:e3:27:6f:96:e0:8c:56:fd:46:52:e9:1d:27:
+    bd:23:d2:48:b9:69:db:dd:e4:23:d2:0c:1e:a8:d6:
+    8f:e3
+pub:
+    04:b5:bb:ba:bf:bb:f7:f4:3b:27:62:d4:87:42:e3:
+    6e:ee:3a:17:fb:a7:51:7b:8f:1a:86:a7:d5:21:f1:
+    29:a3:98:c3:88:e3:30:53:8f:f8:e0:15:af:be:9a:
+    95:12:76:43:f7:57:7e:5a:29:d0:97:f6:3d:f5:8c:
+    8d:b1:2a:3b:bf
+ASN1 OID: secp256k1
+
+#Escribimos la clave pública:
+> openssl ec -in priv.pem -pubout > publ.pem
+
+> openssl ecparam -in priv.pem -text -param_enc explicit
+
+Field Type: prime-field
+Prime:
+    00:ff:ff:ff:ff:ff:ff:ff:ff:ff:ff:ff:ff:ff:ff:
+    ff:ff:ff:ff:ff:ff:ff:ff:ff:ff:ff:ff:ff:fe:ff:
+    ff:fc:2f
+A:    0
+B:    7 (0x7)
+Generator (uncompressed):
+    04:79:be:66:7e:f9:dc:bb:ac:55:a0:62:95:ce:87:
+    0b:07:02:9b:fc:db:2d:ce:28:d9:59:f2:81:5b:16:
+    f8:17:98:48:3a:da:77:26:a3:c4:65:5d:a4:fb:fc:
+    0e:11:08:a8:fd:17:b4:48:a6:85:54:19:9c:47:d0:
+    8f:fb:10:d4:b8
+Order:
+    00:ff:ff:ff:ff:ff:ff:ff:ff:ff:ff:ff:ff:ff:ff:
+    ff:fe:ba:ae:dc:e6:af:48:a0:3b:bf:d2:5e:8c:d0:
+    36:41:41
+Cofactor:  1 (0x1)
+-----BEGIN EC PARAMETERS-----
+MIGiAgEBMCwGByqGSM49AQECIQD////////////////////////////////////+
+///8LzAGBAEABAEHBEEEeb5mfvncu6xVoGKVzocLBwKb/NstzijZWfKBWxb4F5hI
+Otp3JqPEZV2k+/wOEQio/Re0SKaFVBmcR9CP+xDUuAIhAP//////////////////
+//66rtzmr0igO7/SXozQNkFBAgEB
+-----END EC PARAMETERS-----
